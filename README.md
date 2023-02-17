@@ -26,34 +26,44 @@
 ## Endpoints
 
 ### `/auth` 
-- __POST___ `/auth/register`: registerNewUser
-- __POST___ `/auth/login`: loginUser
+- __POST__ `/auth/register`: registerNewUser
+- __POST__ `/auth/login`: loginUser
 
+  
 ### `/users` (CRUD)
 
 - __GET__ `/users`: getAllUsers
-- __GET__ `/users/user_id/:user_id`: getUserById
-- __PUT__ `/users/user_id/:user_id`: updateUser
-- __DELETE__ `/users/user_id/:user_id`: deleteUser
+- __GET__ `/users/user_id`: getUserById
+- __PUT__ `/users/user_id`: updateUser
+- __DELETE__ `/users/user_id`: deleteUser
 
 ### `/photos` (CRUD)
 
 - __GET__ `/photos`: getAllPhotos
 - __POST__ `/photos`: uploadNewPhoto
-- __GET__ `/photos/id/:id`: getPhotoById
-- __PUT__ `/photos/id/:id`: updatePhoto
-- __DELETE__ `/photos/id/:id`: deletePhoto
+- __GET__ `/photos/id`: getPhotoById
+- __PUT__ `/photos/id`: updatePhoto
+- __DELETE__ `/photos/id`: deletePhoto
 
 ### `/captions` (CRUD)
 
-- __GET__ `/photos`: getAllCaptions
-- __POST__ `/photos`: createNewCaption
-- __GET__ `/photos/id/:id`: getCaptionById
-- __PUT__ `/photos/id/:id`: updateCaption
-- __DELETE__ `/photos/id/:id`: deleteCaption
+- __GET__ `/captions`: getAllCaptions
+- __POST__ `/captions`: createNewCaption
+- __GET__ `/captions/id`: getCaptionById
+- __PUT__ `/captions/id`: updateCaption
+- __DELETE__ `/captions/id`: deleteCaption
 
 ### `/votes` (CR)
 
 - __GET__ `/votes`: getAllVotes
-- __POST__ `/votes`: newVotes
-- __GET__ `/photos/id/:id/votes`: getVotesByPhoto
+- __POST__ `/votes/photos/id`: newVotes
+- __GET__ `/votes/photos/id`: getVotesByPhoto
+
+ressource compte d'utilisateur 
+entité/action/ressource
+créer:->action requête
+identité:->ressource 'instance de ces modèles
+
+utilisateur anonyme se créer un compte accèder au contenu public
+utilisateur conecté authetifier et supprimer et modifier ce qui lui appartient
+utilisateur admin capable de tout faire role base access control
