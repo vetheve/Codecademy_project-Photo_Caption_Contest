@@ -22,3 +22,34 @@
 - Database relationships and configuration
 - Sequelize
 - Heroku
+
+## Endpoints
+### `/users` (CRUD)
+
+- __GET__ `/users`: getAllUsers
+- __POST__ `/users`: createNewUser
+- __GET__ `/users/user_id/:user_id`: getUserById
+- __PUT__ `/users/user_id/:user_id`: updateUser
+- __DELETE__ `/users/user_id/:user_id`: deleteUser
+
+### `/photos` (CRUD)
+
+- __GET__ `/photos`: getAllPhotos
+- __POST__ `/photos`: uploadNewPhoto
+- __GET__ `/photos/id/:id`: getPhotoById
+- __PUT__ `/photos/id/:id`: updatePhoto
+- __DELETE__ `/photos/id/:id`: deletePhoto
+
+### `/captions` (CRUD)
+
+- __GET__ `/photos`: getAllCaptions
+- __POST__ `/photos`: createNewCaption
+- __GET__ `/photos/id/:id`: getCaptionById
+- __PUT__ `/photos/id/:id`: updateCaption
+- __DELETE__ `/photos/id/:id`: deleteCaption
+
+### `/votes` (CR)
+
+- __GET__ `/votes`: getAllVotes
+- __POST__ `/votes`: newVotes
+- __GET__ `/photos/id/:id/votes`: getVotesByPhoto
