@@ -24,10 +24,14 @@
 - Heroku
 
 ## Endpoints
+
+### `/auth` 
+- __POST___ `/auth/register`: registerNewUser
+- __POST___ `/auth/login`: loginUser
+
 ### `/users` (CRUD)
 
 - __GET__ `/users`: getAllUsers
-- __POST__ `/users`: createNewUser
 - __GET__ `/users/user_id/:user_id`: getUserById
 - __PUT__ `/users/user_id/:user_id`: updateUser
 - __DELETE__ `/users/user_id/:user_id`: deleteUser
@@ -51,5 +55,5 @@
 ### `/votes` (CR)
 
 - __GET__ `/votes`: getAllVotes
-- __POST__ `/votes`: newVote
+- __POST__ `/votes`: newVotes
 - __GET__ `/photos/id/:id/votes`: getVotesByPhoto
