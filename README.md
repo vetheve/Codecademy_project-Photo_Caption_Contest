@@ -51,5 +51,5 @@
 ### `/votes` (CR)
 
 - __GET__ `/votes`: getAllVotes
-- __POST__ `/votes`: newVotes
+- __POST__ `/votes`: newVote
 - __GET__ `/photos/id/:id/votes`: getVotesByPhoto
