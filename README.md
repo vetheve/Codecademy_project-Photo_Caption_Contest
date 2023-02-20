@@ -59,6 +59,54 @@
 - __POST__ `/votes/photos/id`: newVotes
 - __GET__ `/votes/photos/id`: getVotesByPhoto
 
+## __POST__ `/auth/register`: registerNewUser
+
+                    +-----------+                      +---------------+
+                    |           |                      |               |
+                    |   Client  |                      |    Server     |
+                    |           |                      |               |
+                    +-----+-----+                      +-------+-------+
+                          |                                    |
+                          | 1. Send registration data          |
+                          |----------------------------------->|
+                          |                                    |
+                          | 2. Validate user's input           |
+                          |<-----------------------------------|
+                          |                                    |
+                          | 3. Hash user's password            |
+                          |<-----------------------------------|
+                          |                                    |
+                          | 4. Create new user in the database |
+                          |----------------------------------->|
+                          |                                    |
+                          | 5. Generate JWT for user           |
+                          |<-----------------------------------|
+                          |                                    |
+                          | 6. Send JWT to client in data      |
+                          |<-----------------------------------|
+                          |                                    |
+                          | 7. Save JWT in client storage      |
+                          |                                    |
+                          |                                    |
+                          +------------------------------------+
+
+1. The client sends a GET request to the server's /auth/register endpoint with the user's name, email, and password included in the request data.
+
+2. The server (implemented using Node.js and PostgreSQL) receives the request and validates the user's input, making sure the email address is valid and the password meets the required complexity and length.
+
+3. The server then uses the bcrypt library to hash the user's password before storing it in the database.
+
+4. The server creates a new user account in the database, using the provided name, email, and hashed password.
+
+5. After successfully creating the new user account, the server generates a JSON Web Token (JWT) using the jsonwebtoken library to authenticate the user's session.
+
+6. The server sends the JWT back to the client in the response data, allowing the user to access protected routes on the server.
+
+7. The client saves the JWT in local storage or a cookie for future requests to authenticated endpoints.
+
+8. The user is now registered and authenticated on the server, and can begin using the app's features and services.
+
+-----------------------------------------------------------
 ressource compte d'utilisateur 
 entité/action/ressource
 créer:->action requête
