@@ -106,6 +106,48 @@
 
 8. The user is now registered and authenticated on the server, and can begin using the app's features and services.
 
+
+## __POST__ `/auth/login`: loginUser
+
+                    +-----------+                      +---------------+
+                    |           |                      |               |
+                    |   Client  |                      |    Server     |
+                    |           |                      |               |
+                    +-----+-----+                      +-------+-------+
+                          |                                    |
+                          | 1. Send login data                 |
+                          |----------------------------------->|
+                          |                                    |
+                          | 2. Retrieve user's data            |
+                          |<-----------------------------------|
+                          |                                    |
+                          | 3. Compare password with hash      |
+                          |<-----------------------------------|
+                          |                                    |
+                          | 4. Generate JWT for user           |
+                          |<-----------------------------------|
+                          |                                    |
+                          | 5. Send JWT to client in data      |
+                          |<-----------------------------------|
+                          |                                    |
+                          | 6. Save JWT in client storage      |
+                          |                                    |
+                          |                                    |
+                          +------------------------------------+
+
+1. The client sends a GET request to the server's /auth/login endpoint with the user's email and password included in the request data.
+
+2. The server (implemented using Node.js and PostgreSQL) receives the request and retrieves the user's account data from the database using the provided email address.
+
+3. The server uses the bcrypt library to compare the user's input password with the stored hashed password in the database. If they match, the server proceeds to the next step.
+
+4. The server generates a JSON Web Token (JWT) using the jsonwebtoken library to authenticate the user's session.
+
+5. The server sends the JWT back to the client in the response data, allowing the user to access protected routes on the server.
+
+6. The client saves the JWT in local storage or a cookie for future requests to authenticated endpoints.
+
+The user is now authenticated on the server and can access protected routes.
 -----------------------------------------------------------
 ressource compte d'utilisateur 
 entité/action/ressource
