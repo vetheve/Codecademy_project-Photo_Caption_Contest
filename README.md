@@ -163,8 +163,6 @@
 5.b. If the user's login credentials are incorrect, the server sends an error response to the client-side, which can then display an error message to the user.
   1. The user is now authenticated on the server and can access protected routes. Subsequent requests to protected routes will include the JWT in the request headers, which the server can use to verify the user's identity and authorize their access.
 
-Note: make a separate step for authorization.
-
 ## __GET__ `/photos`: getAllPhotos
 
 ````
@@ -208,6 +206,8 @@ Note: make a separate step for authorization.
 4. The server then returns a JSON response containing an array of all photos, including metadata such as the photo ID, file name, upload date, and any other relevant information.
 5. The client receives the JSON response and parses it to extract the photo data.
 6. The client then displays the photos to the user.
+
+Note: make a separate step for authorization.
 
 -----------------------------------------------------------
 ressource compte d'utilisateur 
