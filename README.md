@@ -148,7 +148,7 @@
 | | Server retrieves user's account data from the database |
 | | Server compares user's input password with stored hashed password |
 | | If passwords match, Server generates JWT |
-| Client receives JWT back in response data | Client saves JWT in local storage or cookie |
+| Client receives JWT back in response data | |
 | | Server authorizes user's access to protected routes using the JWT |
 
 
