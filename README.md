@@ -157,11 +157,13 @@
 2. The client-side sends a GET request to the server's /auth/login endpoint with the user's email and password included in the request data.
 3. The server (implemented using Node.js and PostgreSQL) receives the request and retrieves the user's account data from the database using the provided email address.
 4. The server uses the bcrypt library to compare the user's input password with the stored hashed password in the database. If they match, the server proceeds to the next step.
-5.a If the password is correct, the server generates a JSON Web Token (JWT) using the jsonwebtoken library to authenticate the user's session.
+5.a. If the password is correct, the server generates a JSON Web Token (JWT) using the jsonwebtoken library to authenticate the user's session.
   1. The server sends the JWT back to the client in the response data, allowing the user to access protected routes on the server.
   1. The client saves the JWT in local storage or a cookie for future requests to authenticated endpoints.
-5.b If the user's login credentials are incorrect, the server sends an error response to the client-side, which can then display an error message to the user.
- 1. The user is now authenticated on the server and can access protected routes. Subsequent requests to protected routes will include the JWT in the request headers, which the server can use to verify the user's identity and authorize their access.
+5.b. If the user's login credentials are incorrect, the server sends an error response to the client-side, which can then display an error message to the user.
+  1. The user is now authenticated on the server and can access protected routes. Subsequent requests to protected routes will include the JWT in the request headers, which the server can use to verify the user's identity and authorize their access.
+
+Note: make a separate step for authorization.
 
 ## __GET__ `/photos`: getAllPhotos
 
