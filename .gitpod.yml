@@ -14,4 +14,5 @@ tasks:
       npm init ava
       npm install --save-dev supertest
       npm install --save ulid
+      npm install bcrypt jsonwebtoken dotenv
       sudo apt install tree
