@@ -1,0 +1,17 @@
+# Use the Postgres workspace image
+image: gitpod/workspace-postgres
+
+# Run these commands when the workspace is started
+tasks:
+  - command: |
+      sudo apt-get update
+      nvm install node
+      npm install express
+      npm install --save-dev nodemon
+      npm install --save pg pg-hstore sequelize
+      npm install --save-dev sequelize-cli
+      npm install body-parser
+      npm init ava
+      npm install --save-dev supertest
+      npm install --save ulid
+      sudo apt install tree
