@@ -2,18 +2,13 @@
   "development": {
     "username": "postgres",
     "password": "password",
-<<<<<<< HEAD
     "database": "database_development",
-=======
-    "database": "database_name",
->>>>>>> refs/remotes/origin/main
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {
     "username": "postgres",
     "password": "password",
-<<<<<<< HEAD
     "database": "database_test",
     "host": "127.0.0.1",
     "dialect": "postegres"
@@ -24,20 +19,5 @@
     "database": "database_production",
     "host": "127.0.0.1",
     "dialect": "postgres"
-=======
-    "database": "database_name",
-    "host": "127.0.0.1",
-    "dialect": "postgres"
-  },
-  "production": {
-    "use_env_variable": "DATABASE_URL",
-    "dialect": "postgres",
-    "dialectOptions": {
-      "ssl": {
-        "require": true,
-        "rejectUnauthorized": false
-      }
-    }
->>>>>>> refs/remotes/origin/main
   }
 }
