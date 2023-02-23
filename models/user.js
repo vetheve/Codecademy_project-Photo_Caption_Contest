@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   User.init({
+<<<<<<< HEAD
     ulid_id: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -37,6 +38,12 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+=======
+    ulid_id: DataTypes.STRING,
+    username: DataTypes.STRING,
+    email: DataTypes.STRING,
+    password: DataTypes.STRING
+>>>>>>> refs/remotes/origin/main
   }, {
     sequelize,
     modelName: 'User',
