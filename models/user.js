@@ -49,7 +49,11 @@ module.exports = (sequelize, DataTypes) => {
         isAlphanumeric: {
           args: true,
           msg: 'Username can only contain letters and numbers'
-        }
+        },
+        not: {
+          args: /(;\")?(--|SELECT|INSERT|UPDATE|DELETE|UNION|EXEC|DROP|ALTER)(\s+)/i,
+          msg: 'Password contains invalid characters',
+        },
       }
     },  
     email: {

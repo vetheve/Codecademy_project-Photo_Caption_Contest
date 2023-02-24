@@ -24,8 +24,25 @@ module.exports = (sequelize, DataTypes) => {
     text: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
-    },
+      unique: {
+        args: true,
+        msg: 'Text already exists'
+      },
+      validate: {
+        notNull: {
+          args: true,
+          msg: 'Text is required'
+        },
+        notEmpty: {
+          args: true,
+          msg: 'Text cannot be empty'
+        },
+        len: {
+          args: [1, 100],
+          msg: 'Text must be between 1 and 100 characters'
+        }
+      }
+    },    
   }, {
     sequelize,
     modelName: 'Caption',
