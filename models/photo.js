@@ -24,8 +24,29 @@ module.exports = (sequelize, DataTypes) => {
     url: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
-    },
+      unique: {
+        args: true,
+        msg: 'URL already exists'
+      },
+      validate: {
+        notNull: {
+          args: true,
+          msg: 'URL is required'
+        },
+        notEmpty: {
+          args: true,
+          msg: 'URL cannot be empty'
+        },
+        isUrl: {
+          args: true,
+          msg: 'URL is not valid'
+        },
+        len: {
+          args: [10, 255],
+          msg: 'URL must be between 10 and 255 characters'
+        }
+      }
+    },    
   }, {
     sequelize,
     modelName: 'Photo',
