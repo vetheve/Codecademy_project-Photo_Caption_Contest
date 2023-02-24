@@ -13,7 +13,7 @@ module.exports = {
         allowNull: false,
         unique: true,
         primaryKey: true,
-        type: Sequelize.STRING
+        type: Sequelize.UUID
       },
       username: {
         allowNull: false,
@@ -26,6 +26,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       password: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       createdAt: {

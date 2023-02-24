@@ -13,12 +13,20 @@ module.exports = {
         allowNull: false,
         unique: true,
         primaryKey: true,
-        type: Sequelize.STRING
+        type: Sequelize.UUID
       },
       value: {
         allowNull: false,
         type: Sequelize.INTEGER
       },
+      user_id: {
+				allowNull: false,
+				type: Sequelize.UUID,
+				references: {
+					model: 'User',
+					key: 'uuid'
+				}
+			},
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
