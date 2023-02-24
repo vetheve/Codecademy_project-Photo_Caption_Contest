@@ -14,8 +14,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Vote.init({
-    ulid_id: {
-      type: DataTypes.STRING,
+    uuid: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       unique: true,
       primaryKey: true,
@@ -27,6 +28,7 @@ module.exports = (sequelize, DataTypes) => {
         min: 0,
         max: 5,
       },
+    },
   }, {
     sequelize,
     modelName: 'Vote',

@@ -2,13 +2,14 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('votes', {
+    await queryInterface.createTable('Votes', {
       id: {
         allowNull: false,
+        unique: true,
         autoIncrement: true,
         type: Sequelize.INTEGER
       },
-      ulid_id: {
+      uuid: {
         allowNull: false,
         unique: true,
         primaryKey: true,
@@ -18,17 +19,17 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER
       },
-      created_at: {
+      createdAt: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updated_at: {
+      updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
       }
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('votes');
+    await queryInterface.dropTable('Votes');
   }
 };

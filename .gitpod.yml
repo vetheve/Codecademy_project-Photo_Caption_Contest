@@ -3,7 +3,7 @@ image: gitpod/workspace-postgres
 
 # Run these commands when the workspace is started
 tasks:
-  - command: |
+  - init: |
       sudo apt-get update
       nvm install node
       npm install express
