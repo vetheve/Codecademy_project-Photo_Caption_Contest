@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Vote.belongsTo(models.User, {
+        foreignKey: 'user_id',
+        as: 'user'
+    });
     }
   }
   Photo.init({
@@ -45,6 +49,10 @@ module.exports = (sequelize, DataTypes) => {
           args: [10, 255],
           msg: 'URL must be between 10 and 255 characters'
         }
+      },
+      user_id: {
+        allowNull: false,
+        type: DataTypes.UUID,
       }
     },    
   }, {
