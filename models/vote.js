@@ -25,9 +25,23 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
-        min: 0,
-        max: 5,
-      },
+        notNull: {
+          args: true,
+          msg: 'Value is required'
+        },
+        isInt: {
+          args: true,
+          msg: 'Value must be an integer'
+        },
+        min: {
+          args: [0],
+          msg: 'Value must be greater than or equal to 0'
+        },
+        max: {
+          args: [5],
+          msg: 'Value must be less than or equal to 5'
+        }
+      }
     },
   }, {
     sequelize,
