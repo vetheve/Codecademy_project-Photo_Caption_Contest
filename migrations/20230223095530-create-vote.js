@@ -19,6 +19,14 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER
       },
+      photo_id: {
+				allowNull: false,
+				type: Sequelize.UUID,
+				references: {
+					model: 'Photos',
+					key: 'uuid'
+				}
+			},
       user_id: {
 				allowNull: false,
 				type: Sequelize.UUID,

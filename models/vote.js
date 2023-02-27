@@ -11,6 +11,11 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
+            Vote.belongsTo(models.Photo, {
+				foreignKey: 'photo_id',
+				as: 'photo',
+				onDelete: 'CASCADE'
+			}),
             Vote.belongsTo(models.User, {
                 foreignKey: 'user_id',
                 as: 'user'
@@ -46,6 +51,10 @@ module.exports = (sequelize, DataTypes) => {
                     msg: 'Value must be less than or equal to 5'
                 },
             }
+        },
+        photo_id: {
+            allowNull: false,
+            type: DataTypes.UUID,
         },
         user_id: {
             allowNull: false,

@@ -15,9 +15,14 @@ module.exports = (sequelize, DataTypes) => {
                     foreignKey: 'user_id',
                     as: 'photographer'
                 }),
-                Photo.hasMany(models.Caption, {
+                Photo.hasMany(models.Vote, {
 					foreignKey: 'photo_id',
-					as: 'captions',
+					as: 'votes',
+					onDelete: 'CASCADE'
+				}),
+                Photo.hasOne(models.Caption, {
+					foreignKey: 'photo_id',
+					as: 'caption',
 					onDelete: 'CASCADE'
 				})
         }
