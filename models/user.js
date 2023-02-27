@@ -121,7 +121,7 @@ module.exports = (sequelize, DataTypes) => {
         hooks: {
             // Hash the user's password before creating a new user
             beforeCreate: (User) => {
-                const salt = bcrypt.genSaltSync();
+                const salt = bcrypt.genSaltSync(10);
                 User.password = bcrypt.hashSync(User.password, salt);
             }
         },
