@@ -74,7 +74,7 @@ test('2. registerNewUser returns an error message if an error occurs during the 
     await registerNewUser(req, res);
 
     // Print the object in the console
-    t.log(res.status);
+    t.log(res.status.getCall(0));
 
     // Assert that the response was sent with the correct status code and error message
     t.is(res.status.getCall(0).args[0], 400);
