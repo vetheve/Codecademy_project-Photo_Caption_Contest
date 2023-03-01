@@ -1,8 +1,11 @@
 const express = require('express');
 const db = require('./models');
 const jwt = require('jsonwebtoken');
-const authRoutes = require('./routes/auth');
 
+// Import the routes
+const routes = require('./routes/index.js');
+
+// Import the environment variables
 require('dotenv').config();
 
 const app = express();
@@ -23,7 +26,7 @@ const jwtConfig = {
 app.use(express.json());
 
 // Set up routes
-app.use('/auth', authRoutes);
+app.use('/', routes);
 
 // Connect to the database and start the server
 db.sequelize.sync().then(() => {
