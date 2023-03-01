@@ -1,9 +1,9 @@
 const test = require('ava');
 const request = require('supertest');
-const app = require('../app'); // assuming that the app is defined in app.js
-const { User } = require('../models/index');
+const app = require('../../app.js'); 
+const { User } = require('../../models/index.js');
 const jwt = require('jsonwebtoken');
-const secret = 'testsecret';
+const secret = process.env.JWT_SECRET;
 
 // Test for registering a new user
 test('register new user', async (t) => {

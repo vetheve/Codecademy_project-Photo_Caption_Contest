@@ -3,16 +3,17 @@ const router = express.Router();
 
 // Import the controllers
 const authController = require('../controllers/authController.js');
-const usersController = require('../controllers/usersController.js');
-const photosController = require('../controllers/photosController.js');
-const captionsController = require('../controllers/captionsController.js');
+//const usersController = require('../controllers/usersController.js');
+//const photosController = require('../controllers/photosController.js');
+//const captionsController = require('../controllers/captionsController.js');
 //const votesController = require('../controllers/votes');
 
 // Import the auth middleware
-const auth = require('../middleware/auth');
+//const auth = require('../middleware/auth');
 
 // Define the routes
 router.post('/auth/register', authController.registerNewUser);
+/*
 router.post('/auth/login', authController.loginUser);
 
 router.get('/users', auth, usersController.getAllUsers);
@@ -31,6 +32,7 @@ router.post('/captions', auth, captionsController.createNewCaption);
 router.get('/captions/:id', auth, captionsController.getCaptionById);
 router.put('/captions/:id', auth, captionsController.updateCaption);
 router.delete('/captions/:id', auth, captionsController.deleteCaption);
+*/
 
 // Export the router
 module.exports = router;

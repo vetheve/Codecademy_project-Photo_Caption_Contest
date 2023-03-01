@@ -10,6 +10,8 @@ require('dotenv').config();
 
 const app = express();
 
+module.exports = app;
+
 const dbConfig = {
   database: process.env.DB_NAME,
   username: process.env.DB_USERNAME,

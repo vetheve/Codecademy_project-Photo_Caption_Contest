@@ -32,13 +32,14 @@ exports.registerNewUser = async (req, res) => {
             id: user.id
         }, secret);
 
+        console.log(token)
         // Returning the token to the client
         res.status(201).json({
             token
         });
     } catch (error) {
         // If an error occurs during the registration process, returning the error message to the client
-        res.status(400).json({
+        res.status(500).json({
             error: error.message
         });
     }
