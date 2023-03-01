@@ -7,7 +7,7 @@ const {
 const jwt = require('jsonwebtoken');
 
 // Getting the secret key for the JSON web token from the environment variables
-const secret = process.env.JWT_SECRET;
+//const secret = process.env.JWT_SECRET;
 
 // Function to register a new user
 exports.registerNewUser = async (req, res) => {
@@ -35,10 +35,11 @@ exports.registerNewUser = async (req, res) => {
         console.log(token)
         // Returning the token to the client
         res.status(201).json({
-            token
+            toke: 'bidon'
         });
     } catch (error) {
         // If an error occurs during the registration process, returning the error message to the client
+        console.log(error);
         res.status(500).json({
             error: error.message
         });
