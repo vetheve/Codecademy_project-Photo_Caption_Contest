@@ -1,9 +1,28 @@
 const test = require('ava');
 const request = require('supertest');
-const app = require('../../app.js'); 
 const { User } = require('../../models/index.js');
 const jwt = require('jsonwebtoken');
 const secret = process.env.JWT_SECRET;
+
+// Create an instance of the express application
+const app = express();
+const router = require('../../routes/index.js'); 
+
+// Use the router with the '/index' route
+app.use('/index', router);
+
+require('dotenv').config()
+
+test('foo', t => {
+    console.log(process.env.DB_NAME);
+    console.log(process.env.DB_USERNAME);
+    console.log(process.env.DB_PASSWORD);
+    console.log(process.env.DB_HOST);
+    console.log(process.env.DB_DIALECT);
+    console.log(process.env.JWT_SECRET);
+    t.pass();
+});
+
 
 // Test for registering a new user
 test('register new user', async (t) => {

@@ -2,13 +2,15 @@ const express = require('express');
 const db = require('./models');
 const jwt = require('jsonwebtoken');
 
-// Import the routes
-const routes = require('./routes/index.js');
+// Create an instance of the express application
+const app = express();
+const router = require('../../routes/index.js'); 
+
+// Use the router with the '/index' route
+app.use('/index', router);
 
 // Import the environment variables
 require('dotenv').config();
-
-const app = express();
 
 module.exports = app;
 

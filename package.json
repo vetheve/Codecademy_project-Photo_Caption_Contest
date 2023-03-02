@@ -19,6 +19,6 @@
     "supertest": "^6.3.3"
   },
   "scripts": {
-    "test": "ava"
+    "test": "ava --require dotenv/config"
   }
 }

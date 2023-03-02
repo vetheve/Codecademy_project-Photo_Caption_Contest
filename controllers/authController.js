@@ -7,8 +7,8 @@ const {
 const jwt = require('jsonwebtoken');
 
 // Getting the secret key for the JSON web token from the environment variables
-//const secret = process.env.JWT_SECRET;
-
+const secret = process.env.JWT_SECRET;
+console.log(secret);
 // Function to register a new user
 exports.registerNewUser = async (req, res) => {
 
