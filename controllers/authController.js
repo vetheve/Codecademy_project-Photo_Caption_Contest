@@ -1,15 +1,14 @@
 // Importing the User model from the index file in the models directory
-const { 
-    User 
-} = require('../models/index.js'); 
+const {
+    User
+} = require('../models/index.js');
 
 // Importing the JSON web token package
 const jwt = require('jsonwebtoken');
 
 // Getting the secret key for the JSON web token from the environment variables
-const secret = process.env.JWT_SECRET;
-console.log(secret);
-// Function to register a new user
+const authConfig = require('../config/authConfig');
+
 exports.registerNewUser = async (req, res) => {
 
     // Extracting the required fields from the request body
@@ -30,12 +29,16 @@ exports.registerNewUser = async (req, res) => {
         // Creating a JSON web token using the user's ID and the secret key
         const token = jwt.sign({
             id: user.id
-        }, secret);
+        }, authConfig.secret, {
+            expiresIn: authConfig.expiresIn
+        });
 
-        console.log(token)
-        // Returning the token to the client
+        console.log(token);
+
+        // Returning the user and token to the client
         res.status(201).json({
-            toke: 'bidon'
+            user,
+            token
         });
     } catch (error) {
         // If an error occurs during the registration process, returning the error message to the client

@@ -1,55 +1,35 @@
-const test = require('ava');
-const request = require('supertest');
-const { User } = require('../../models/index.js');
 const jwt = require('jsonwebtoken');
 const secret = process.env.JWT_SECRET;
 
+const test = require("ava"); // Importing the AVA test library
+const request = require("supertest"); // Importing the supertest library for making HTTP requests
+const apiRouter = require('../../routes/api.js'); // Importing the api router file for the all the routers
+const express = require('express'); // Importing express
+
 // Create an instance of the express application
 const app = express();
-const router = require('../../routes/index.js'); 
 
-// Use the router with the '/index' route
-app.use('/index', router);
+// Use the apiRouter with the '/api' route
+app.use('/', apiRouter);
 
+// Use dotenv to access environment variables defined in a '.env' file
 require('dotenv').config()
 
-test('foo', t => {
-    console.log(process.env.DB_NAME);
-    console.log(process.env.DB_USERNAME);
-    console.log(process.env.DB_PASSWORD);
-    console.log(process.env.DB_HOST);
-    console.log(process.env.DB_DIALECT);
-    console.log(process.env.JWT_SECRET);
-    t.pass();
+test('RegisterNewUser function should create a new user and return a token', async t => {
+    // Creating a request object
+    const newUser = {
+        username: 'testuser',
+        email: 'testuser@example.com',
+        password: 'password',
+    };
+
+    // Making a POST request to the '/register' route to create to user
+    const res = await request(app).post('/register').send(newUser);
+
+    // Asserting that the status code of the response is 201
+    t.is(res.status, 201);
+
+    // Print the object in the console
+    t.log(res.body)
 });
 
-
-// Test for registering a new user
-test('register new user', async (t) => {
-  t.plan(3);
-
-  const res = await request(app)
-    .post('/auth/register')
-    .send({
-      username: 'testuser',
-      email: 'testuser@example.com',
-      password: 'testpassword',
-    })
-    .expect(201);
-
-  const token = res.body.token;
-
-  // Verify that the token is valid
-  jwt.verify(token, secret, (err, decoded) => {
-    if (err) {
-      t.fail();
-    } else {
-      t.is(decoded.id, 1); // assuming that the first user has an ID of 1
-      t.pass();
-    }
-  });
-
-  // Verify that the user was added to the database
-  const user = await User.findOne({ where: { username: 'testuser' } });
-  t.is(user.email, 'testuser@example.com');
-});

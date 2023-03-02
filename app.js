@@ -1,13 +1,24 @@
 const express = require('express');
 const db = require('./models');
 const jwt = require('jsonwebtoken');
-
-// Create an instance of the express application
 const app = express();
-const router = require('../../routes/index.js'); 
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
-// Use the router with the '/index' route
-app.use('/index', router);
+module.exports = app;
+
+const PORT = process.env.PORT || 4001;
+
+// Add middleware for handling CORS requests from index.html
+app.use(cors());
+
+// Add middware for parsing request bodies here:
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+// Mount your existing apiRouter below at the '/api' path.
+const apiRouter = require('./server/api');
+app.use('/api', apiRouter);
 
 // Import the environment variables
 require('dotenv').config();
