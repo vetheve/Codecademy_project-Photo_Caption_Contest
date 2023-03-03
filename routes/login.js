@@ -8,8 +8,8 @@ const authController = require('../controllers/authController.js');
 const bodyParser = require('body-parser');
 loginRouter.use(bodyParser.json());
 
-// Export balanceRouter for use in other modules
+// Export loginRouter for use in other modules
 module.exports = loginRouter;
 
-// Endpoint to handle requests for the total budget balance
+// Endpoint to handle requests to login
 loginRouter.post('/', authController.loginUser);

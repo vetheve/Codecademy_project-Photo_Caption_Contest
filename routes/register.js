@@ -8,8 +8,8 @@ const authController = require('../controllers/authController.js');
 const bodyParser = require('body-parser');
 registerRouter.use(bodyParser.json());
 
-// Export balanceRouter for use in other modules
+// Export registerRouter for use in other modules
 module.exports = registerRouter;
 
-// Endpoint to handle requests for the total budget balance
+// Endpoint to handle requests to register new user
 registerRouter.post('/', authController.registerNewUser);

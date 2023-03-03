@@ -15,7 +15,7 @@ require('dotenv').config()
 test('getAllUsers function should retrieve all users', async t => {
 
     // Making a GET request to the '/users' route 
-    const res = await request(app).get('/users').send();
+    const res = await request(app).get('/users');
 
     // Asserting that the status code of the response is 200
     t.is(res.status, 200);
