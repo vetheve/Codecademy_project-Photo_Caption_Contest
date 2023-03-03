@@ -7,16 +7,16 @@ const apiRouter = express.Router();
 // Import all routers
 const registerRouter = require('./register.js');
 const loginRouter = require('./login.js');
+const userRouter = require('./users.js');
 //const photoRouter = require('./photo.js');
-//const userRouter = require('./user.js');
 //const captionRouter = require('./caption.js');
 //const voteRouter = require('./vote.js');
 
 // Use the imported routers
 apiRouter.use('/register', registerRouter);
 apiRouter.use('/login', loginRouter);
+apiRouter.use('/users', userRouter);
 //apiRouter.use('/photo', photoRouter);
-//apiRouter.use('/user', userRouter);
 //apiRouter.use('/caption', captionRouter);
 //apiRouter.use('/vote', voteRouter);
 
