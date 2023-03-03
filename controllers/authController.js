@@ -9,6 +9,9 @@ const jwt = require('jsonwebtoken');
 // Getting the secret key for the JSON web token from the environment variables
 const authConfig = require('../config/authConfig');
 
+// Import the bcrypt library for password hashing
+const bcrypt = require('bcrypt');
+
 exports.registerNewUser = async (req, res) => {
 
     // Extracting the required fields from the request body
@@ -33,8 +36,6 @@ exports.registerNewUser = async (req, res) => {
             expiresIn: authConfig.expiresIn
         });
 
-        console.log(token);
-
         // Returning the user and token to the client
         res.status(201).json({
             user,
@@ -49,6 +50,7 @@ exports.registerNewUser = async (req, res) => {
     }
 };
 
+
 // Function to log in a user
 exports.loginUser = async (req, res) => {
 
@@ -57,6 +59,11 @@ exports.loginUser = async (req, res) => {
         email,
         password
     } = req.body;
+
+    // Defining the validPassword method on the User model
+    User.prototype.validPassword = function(password) {
+        return bcrypt.compareSync(password, this.password);
+    };
 
     try {
         // Finding the user with the given email in the database
@@ -73,13 +80,18 @@ exports.loginUser = async (req, res) => {
 
         // Creating a JSON web token using the user's ID and the secret key
         const token = jwt.sign({
-            id: user.id
-        }, secret);
+            user_uuid: user.uuid
+        }, authConfig.secret, {
+            expiresIn: authConfig.expiresIn
+        });
 
         // Returning the token to the client
-        res.json({
-            token
+        res.status(200).json({
+            user_uuid: user.uuid,
+            email: user.email,
+            accessToken: token
         });
+
     } catch (error) {
         // If an error occurs during the login process, returning the error message to the client
         console.log(error);
