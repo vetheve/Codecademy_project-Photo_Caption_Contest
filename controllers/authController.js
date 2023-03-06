@@ -31,7 +31,7 @@ exports.registerNewUser = async (req, res) => {
 
         // Creating a JSON web token using the user's ID and the secret key
         const token = jwt.sign({
-            id: user.id
+            user_uuid: user.uuid
         }, authConfig.secret, {
             expiresIn: authConfig.expiresIn
         });
