@@ -39,3 +39,33 @@ exports.getAllUsers = async (req, res) => {
     }
     
 };
+
+exports.getUserById = async (req, res) => {
+
+    try {
+        // Retrieving a user from the database using the User model, and selecting only specific attributes to return
+        const user = await User.findByPk(req.params.uuid, {
+			include: [
+				{
+					association: 'photos'
+				},
+				{
+					association: 'captions'
+				}
+			]
+		});
+    
+        // Returning a success response to the client, with the retrieved users
+        res.status(200).json({
+            user
+        });
+      
+    } catch (error) {
+        // If an error occurs during the retrieval process, logging the error to the console and returning an error response to the client
+        console.log(error);
+        res.status(404).json({
+            error: error.message
+        });
+    }
+    
+};
