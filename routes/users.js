@@ -16,4 +16,4 @@ module.exports = userRouter;
 userRouter.get('/', userController.getAllUsers);
 
 // Endpoint to handle requests to getUserByID
-//userRouter.get('/uuid/:uuid', userController.getUserById);
+userRouter.get('/uuid/:uuid', userController.getUserById);

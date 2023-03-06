@@ -12,16 +12,16 @@ app.use('/', apiRouter);
 // Use dotenv to access environment variables defined in a '.env' file
 require('dotenv').config()
 
-test('getUserById function should retrieve a user by uudi', async t => {
 
-    const userId = '634a114a-9942-46f9-9f95-915d23c7d8d3'
+test('getUserById function should retrieve a user by uuid', async t => {
+    const userId = "11f8d972-994e-4830-9a1b-112710eea2d7";
 
     // Making a GET request to the '/users' route 
-    const res = await request(app).get('/users/uudi/${userId}');
+    const res = await request(app).get(`/users/uuid/${userId}`);
 
     // Asserting that the status code of the response is 200
     t.is(res.status, 200);
-
-    // Print the object in the console
-    t.log(res.body)
+    
+    // Displaying the response body using console.dir to show the entire contents of the objects
+    console.dir(res.body, { depth: null });
 });
