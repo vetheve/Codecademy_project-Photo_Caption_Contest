@@ -15,10 +15,10 @@ require('dotenv').config()
 
 test('1. updateUser function should retrieve a user by uuid and update the password', async t => {
     
-    const userId = "11f8d972-994e-4830-9a1b-112710eea2d7";
+    const userId = "4a0e204e-6fcd-4646-b005-3eb5bc41c8fb";
     
     const updatedUser = {
-        password: 'malabarsdfs'           
+        password: 'outlander-Skyrim-Simpson'           
     };
 
     // Making a GET request to the '/users' route 
@@ -30,13 +30,13 @@ test('1. updateUser function should retrieve a user by uuid and update the passw
     // Displaying the response body using console.dir to show the entire contents of the objects
     console.dir(res.body, { depth: null });
 });
-/*
+
 test('2. updateUser function should retrieve a user by uuid and update the username', async t => {
     
-    const userId = "11f8d972-994e-4830-9a1b-112710eea2d7";
+    const userId = "4a0e204e-6fcd-4646-b005-3eb5bc41c8fb";
     
     const updatedUser = {
-        username: 'Vegeta'           
+        username: 'POPcorne25M'           
     };
 
     // Making a GET request to the '/users' route 
@@ -48,4 +48,3 @@ test('2. updateUser function should retrieve a user by uuid and update the usern
     // Displaying the response body using console.dir to show the entire contents of the objects
     console.dir(res.body, { depth: null });
 });
-*/

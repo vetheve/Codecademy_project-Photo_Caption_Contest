@@ -1,6 +1,6 @@
 // Importing the User model from the index file in the models directory
 const {
-    User
+    User, Photo, Caption, Vote 
 } = require('../models/index.js');
 
 // Importing the JSON web token package
@@ -11,6 +11,7 @@ const authConfig = require('../config/authConfig');
 
 // Import the bcrypt library for password hashing
 const bcrypt = require('bcrypt');
+const vote = require('../models/vote.js');
 
 exports.getAllUsers = async (req, res) => {
 
@@ -27,16 +28,12 @@ exports.getAllUsers = async (req, res) => {
     
        // If user is not found, return a 404 response
        if (!users) {
-
-        // Log any errors to the console
-        console.error(error);
-
         return res.status(404).json({
             error: 'Users not found',
         });
     } else {
         // Returning a success response to the client, with the retrieved users
-        res.status(200).json({
+        return res.status(200).json({
             users
         });
     };
@@ -62,6 +59,9 @@ exports.getUserById = async (req, res) => {
                 },
                 {
                     association: 'captions'
+                },
+                {
+                    association: 'votes'
                 }
             ]
         });
@@ -73,7 +73,7 @@ exports.getUserById = async (req, res) => {
             });
         } else {
             // Returning a success response to the client, with the retrieved users
-            res.status(200).json({
+            return res.status(200).json({
                 user
             });
         };
@@ -124,7 +124,7 @@ exports.updateUser = async (req, res) => {
 
 
             // Return a success response with the updated user object
-            res.status(200).json({
+            return res.status(200).json({
                 message: 'User updated',
                 user
             });
@@ -139,5 +139,41 @@ exports.updateUser = async (req, res) => {
         });
     }
 };
-  
-  
+
+exports.deleteUser = async (req, res) => {
+    try {
+        const user = await User.findByPk(req.params.uuid);
+        if (!user) {
+            return res.status(404).json({
+                error: 'User not found',
+            });
+        }
+        await Promise.all([
+            Vote.destroy({
+                where: {
+                    user_id: user.uuid
+                }
+            }),
+            Caption.destroy({
+                where: {
+                    user_id: user.uuid
+                }
+            }),
+            Photo.destroy({
+                where: {
+                    user_id: user.uuid
+                }
+            })
+        ]);
+        await user.destroy();
+        return res.status(204).json({
+            message: 'User deleted',
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            error: error.message,
+        });
+    }
+};
+

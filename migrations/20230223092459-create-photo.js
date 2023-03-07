@@ -13,7 +13,8 @@ module.exports = {
                 allowNull: false,
                 unique: true,
                 primaryKey: true,
-                type: Sequelize.UUID
+                type: Sequelize.UUID,
+                onDelete: 'CASCADE'
             },
             url: {
                 allowNull: false,

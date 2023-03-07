@@ -18,7 +18,8 @@ module.exports = (sequelize, DataTypes) => {
 			}),
             Vote.belongsTo(models.User, {
                 foreignKey: 'user_id',
-                as: 'user'
+                as: 'user',
+                onDelete: 'CASCADE'
             });
         }
     }

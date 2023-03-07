@@ -13,7 +13,8 @@ module.exports = {
                 allowNull: false,
                 unique: true,
                 primaryKey: true,
-                type: Sequelize.STRING
+                type: Sequelize.STRING,
+                onDelete: 'CASCADE'
             },
             text: {
                 allowNull: false,

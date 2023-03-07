@@ -18,3 +18,4 @@ userRouter.get('/', userController.getAllUsers);
 // Endpoint to handle requests to getUserByID
 userRouter.get('/uuid/:uuid', userController.getUserById);
 userRouter.put('/uuid/:uuid', userController.updateUser);
+userRouter.delete('/uuid/:uuid', userController.deleteUser);
