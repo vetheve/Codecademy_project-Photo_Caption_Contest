@@ -1,29 +1,32 @@
-'use strict';
+/*'use strict';
 
 // Importing uuidv4 from the uuid package and Sequelize models.
 const {
   v4: uuidv4
 } = require('uuid');
-const models = require('../models');
+const { User, Photo, Vote } = require('../models/index.js');
 
 module.exports = {
   // The up function is responsible for defining the changes that should be applied to the database schema.
   up: async (queryInterface, Sequelize) => {
-      // Retrieve all photos and users from the database using Sequelize models.
-      const photos = await models.Photo.findAll();
-      const users = await models.User.findAll();
+  // Getting all users and photos from the database.
+  const users = await User.findAll();
+  const photos = await Photo.findAll();
 
-      // Generate random votes for each photo by each user
-      for (const photo of photos) {
-          for (const user of users) {
-              // Generate a random integer between 0 and 5 (inclusive).
-              const value = Math.floor(Math.random() * 6);
-              // Create a new Vote model instance with a unique identifier, the generated value, and the IDs of the photo and user.
-              await models.Vote.create({
-                  uuid: uuidv4(),
-                  value,
-                  photo_id: photo.uuid,
-                  user_id: user.uuid,
+  // Looping through all user-photo combinations and creating a vote for each.
+  for (const user of users) {
+    for (const photo of photos) {
+      // Generating a random vote value between 0 and 5.
+      const value = Math.floor(Math.random() * 6);
+
+      // Creating a new vote with the generated values.
+      await Vote.create({
+        uuid: uuidv4(),
+        value,
+        photo_id: photo.uuid,
+        user_id: user.uuid,
+        createdAt: new Date(),
+        updatedAt: new Date(),
               });
           }
       }
@@ -35,4 +38,32 @@ module.exports = {
       return queryInterface.bulkDelete('Votes', null, {});
   }
 };
+*/
+
+'use strict';
+
+const { QueryTypes } = require('sequelize');
+
+module.exports = {
+  up: async (queryInterface, Sequelize) => {
+    // Use raw SQL to insert votes for each user-photo combination.
+    await queryInterface.sequelize.query(`
+      INSERT INTO "Votes" (uuid, value, photo_id, user_id, "createdAt", "updatedAt")
+      SELECT
+        md5(random()::text || clock_timestamp()::text)::uuid,
+        floor(random() * 6),
+        "Photos".uuid,
+        "Users".uuid,
+        now(),
+        now()
+      FROM "Users", "Photos";
+    `, { type: QueryTypes.INSERT });
+  },
+
+  down: async (queryInterface, Sequelize) => {
+    // Delete all votes from the Votes table using the bulkDelete function provided by Sequelize.
+    return queryInterface.bulkDelete('Votes', null, {});
+  }
+};
+
 

@@ -15,25 +15,34 @@ module.exports = {
     up: async (queryInterface, Sequelize) => {
         // Define an array of user objects with plaintext passwords.
         const users = [{
-                id: 1,
                 uuid: uuidv4(),
                 username: 'johndoe',
                 email: 'johndoe@example.com',
                 password: 'password123'
             },
             {
-                id: 2,
                 uuid: uuidv4(),
                 username: 'janedoe',
                 email: 'janedoe@example.com',
                 password: 'password456'
             },
             {
-                id: 3,
                 uuid: uuidv4(),
-                username: 'billdoe',
-                email: 'billdoe@example.com',
+                username: 'graigdoe',
+                email: 'graigdoe@example.com',
                 password: 'password185'
+            },
+            {
+                uuid: uuidv4(),
+                username: 'janickdoe',
+                email: 'janickdoe@example.com',
+                password: 'password457'
+            },
+            {
+                uuid: uuidv4(),
+                username: 'malbardoe',
+                email: 'malbardoe@example.com',
+                password: 'password85'
             }
         ];
 
