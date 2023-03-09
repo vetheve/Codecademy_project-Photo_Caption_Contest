@@ -147,6 +147,29 @@ exports.deleteUser = async (req, res) => {
             return res.status(404).json({
                 error: 'User not found',
             });
+        } else {
+            await user.destroy();
+            return res.status(204).json({
+                message: 'User deleted',
+            });
+        };
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            error: error.message,
+        });
+    }
+};
+
+/*
+exports.deleteUser = async (req, res) => {
+    try {
+        const user = await User.findByPk(req.params.uuid);
+        if (!user) {
+            return res.status(404).json({
+                error: 'User not found',
+            });
         }
         await Promise.all([
             Vote.destroy({
@@ -176,4 +199,4 @@ exports.deleteUser = async (req, res) => {
         });
     }
 };
-
+*/

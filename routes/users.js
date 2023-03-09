@@ -12,10 +12,8 @@ userRouter.use(bodyParser.json());
 // Export balanceuserRouter for use in other modules
 module.exports = userRouter;
 
-// Endpoint to handle requests to getAllUsers
+// Endpoint to handle requests
 userRouter.get('/', userController.getAllUsers);
-
-// Endpoint to handle requests to getUserByID
 userRouter.get('/uuid/:uuid', userController.getUserById);
 userRouter.put('/uuid/:uuid', userController.updateUser);
 userRouter.delete('/uuid/:uuid', userController.deleteUser);

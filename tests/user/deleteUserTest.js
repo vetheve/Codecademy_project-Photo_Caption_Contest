@@ -15,7 +15,7 @@ require('dotenv').config()
 
 test('deletetUser function should delete a user by uuid', async t => {
 
-    const userId = "1d6bc82a-d102-4eca-bd09-5adca5c0ad5f";
+    const userId = "b4ca113f-f771-4eb8-820e-19647567dcc8";
 
     // Making a DELETE request to the '/users' route 
     const res = await request(app).delete(`/users/uuid/${userId}`);

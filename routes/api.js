@@ -8,7 +8,7 @@ const apiRouter = express.Router();
 const registerRouter = require('./register.js');
 const loginRouter = require('./login.js');
 const userRouter = require('./users.js');
-//const photoRouter = require('./photo.js');
+const photoRouter = require('./photo.js');
 //const captionRouter = require('./caption.js');
 //const voteRouter = require('./vote.js');
 
@@ -16,7 +16,7 @@ const userRouter = require('./users.js');
 apiRouter.use('/register', registerRouter);
 apiRouter.use('/login', loginRouter);
 apiRouter.use('/users', userRouter);
-//apiRouter.use('/photo', photoRouter);
+apiRouter.use('/photo', photoRouter);
 //apiRouter.use('/caption', captionRouter);
 //apiRouter.use('/vote', voteRouter);
 

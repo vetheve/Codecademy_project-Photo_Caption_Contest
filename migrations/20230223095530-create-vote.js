@@ -26,7 +26,8 @@ module.exports = {
                 references: {
                     model: 'Photos',
                     key: 'uuid'
-                }
+                },
+                onDelete: 'CASCADE' // cascade deletes to associated vote when a photo is deleted
             },
             user_id: {
                 allowNull: false,
@@ -34,7 +35,8 @@ module.exports = {
                 references: {
                     model: 'Users',
                     key: 'uuid'
-                }
+                },
+                onDelete: 'CASCADE' // cascade deletes to associated vote when a user is deleted
             },
             createdAt: {
                 allowNull: false,

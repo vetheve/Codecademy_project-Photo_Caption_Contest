@@ -28,6 +28,7 @@ module.exports = {
                     model: 'Users',
                     key: 'uuid'
                 },
+                onDelete: 'CASCADE' // cascade deletes to associated photos when a user is deleted
             },
             createdAt: {
                 allowNull: false,

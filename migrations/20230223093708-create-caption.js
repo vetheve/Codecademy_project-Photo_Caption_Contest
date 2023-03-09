@@ -27,7 +27,8 @@ module.exports = {
                 references: {
                     model: 'Users',
                     key: 'uuid'
-                }
+                },
+                onDelete: 'CASCADE' // cascade deletes to associated caption when a user is deleted
             },
             photo_id: {
                 allowNull: false,
@@ -35,7 +36,8 @@ module.exports = {
                 references: {
                     model: 'Photos',
                     key: 'uuid'
-                }
+                },
+                onDelete: 'CASCADE' // cascade deletes to associated caption when a photo is deleted
             },
             createdAt: {
                 allowNull: false,
