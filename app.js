@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Mount your existing apiRouter below at the '/api' path.
-const apiRouter = require('./server/api');
+const apiRouter = require('./routes/api');
 app.use('/api', apiRouter);
 
 // Import the environment variables

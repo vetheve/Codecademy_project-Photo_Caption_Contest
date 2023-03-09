@@ -16,7 +16,7 @@ const photoRouter = require('./photo.js');
 apiRouter.use('/register', registerRouter);
 apiRouter.use('/login', loginRouter);
 apiRouter.use('/users', userRouter);
-apiRouter.use('/photo', photoRouter);
+apiRouter.use('/photos', photoRouter);
 //apiRouter.use('/caption', captionRouter);
 //apiRouter.use('/vote', voteRouter);
 

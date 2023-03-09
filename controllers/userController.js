@@ -11,7 +11,6 @@ const authConfig = require('../config/authConfig');
 
 // Import the bcrypt library for password hashing
 const bcrypt = require('bcrypt');
-const vote = require('../models/vote.js');
 
 exports.getAllUsers = async (req, res) => {
 
