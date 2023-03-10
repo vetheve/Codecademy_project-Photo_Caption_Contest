@@ -16,5 +16,5 @@ module.exports = photoRouter;
 photoRouter.get('/', photoController.getAllPhotos);
 //photoRouter.post('/', photoController.uploadNewPhoto);
 photoRouter.get('/uuid/:uuid', photoController.getPhotoById);
-//photoRouter.put('/uuid/:uuid', photoController.updatePhoto);
+photoRouter.put('/uuid/:uuid', photoController.updatePhoto);
 photoRouter.delete('/uuid/:uuid', photoController.deletePhoto);

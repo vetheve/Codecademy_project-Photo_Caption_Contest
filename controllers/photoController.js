@@ -98,10 +98,36 @@ exports.deletePhoto = async (req, res) => {
         const photo = await Photo.findByPk(req.params.uuid);
         if (!photo) {
             return res.status(404).json({
-                error: 'User not found',
+                error: 'Photo not found',
             });
         } else {
             await photo.destroy();
+            return res.status(204).json({
+                message: 'Photo deleted',
+            });
+        };
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            error: error.message,
+        });
+    }
+};
+
+exports.updatePhoto = async (req, res) => {
+    try {
+        const photo = await Photo.findByPk(req.params.uuid);
+        if (!photo) {
+            return res.status(404).json({
+                error: 'Photo not found',
+            });
+        } else {
+            await photo.update(req.body, { 
+                where: { 
+                    uuid: req.params.uuid 
+                }
+            });
             return res.status(204).json({
                 message: 'Photo deleted',
             });
