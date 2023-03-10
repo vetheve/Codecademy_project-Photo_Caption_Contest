@@ -15,6 +15,6 @@ module.exports = photoRouter;
 // Endpoint to handle requests
 photoRouter.get('/', photoController.getAllPhotos);
 //photoRouter.post('/', photoController.uploadNewPhoto);
-//photoRouter.get('/uuid/:uuid', photoController.getPhotoById);
+photoRouter.get('/uuid/:uuid', photoController.getPhotoById);
 //photoRouter.put('/uuid/:uuid', photoController.updatePhoto);
 //photoRouter.delete('/uuid/:uuid', photoController.deletePhoto);
