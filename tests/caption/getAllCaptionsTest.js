@@ -14,8 +14,8 @@ require('dotenv').config()
 
 test('getAllPhotos function should retrieve all photos', async t => {
 
-    // Making a GET request to the '/photos' route 
-    const res = await request(app).get('/photos');
+    // Making a GET request to the '/captions' route 
+    const res = await request(app).get('/captions');
 
     // Asserting that the status code of the response is 200
     t.is(res.status, 200);

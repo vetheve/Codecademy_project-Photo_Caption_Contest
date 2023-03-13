@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 // Import the controllers
-const authController = require('../controllers/authController.js');
+//const authController = require('../controllers/authController.js');
 //const usersController = require('../controllers/usersController.js');
 //const photosController = require('../controllers/photosController.js');
 //const captionsController = require('../controllers/captionsController.js');
@@ -12,7 +12,7 @@ const authController = require('../controllers/authController.js');
 //const auth = require('../middleware/auth');
 
 // Define the routes
-router.post('/auth/register', authController.registerNewUser);
+//router.post('/auth/register', authController.registerNewUser);
 /*
 router.post('/auth/login', authController.loginUser);
 
