@@ -156,7 +156,7 @@ exports.uploadNewPhoto = async (req, res) => {
             user_id,
         });
 
-        // Returning the user and token to the client
+        // Returning the photo to the client
         res.status(201).json({
             photo
         });

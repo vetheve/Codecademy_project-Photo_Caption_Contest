@@ -13,7 +13,7 @@ module.exports = captionRouter;
 
 // Endpoint to handle requests
 captionRouter.get('/', captionController.getAllCaptions);
-//captionRouter.post('/', captionController.uploadNewCaption);
+captionRouter.post('/', captionController.uploadNewCaption);
 captionRouter.get('/uuid/:uuid', captionController.getCaptionById);
 //captionRouter.put('/uuid/:uuid', captionController.updateCaption);
 //captionRouter.delete('/uuid/:uuid', captionController.deleteCaption);

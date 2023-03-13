@@ -79,3 +79,39 @@ exports.getCaptionById = async (req, res) => {
         });
     }
 };
+
+
+exports.uploadNewCaption = async (req, res) => {
+
+    // Extracting the required fields from the request body
+    const {
+        text,
+        user_id,
+        photo_id
+    } = req.body;
+
+    try {
+        // Validate that the length of the text field is between 1 and 100 characters
+        if (text.length < 1 || text.length > 100) {
+            throw new Error('Text must be between 1 and 100 characters');
+        }
+
+        // Creating a new photo in the database
+        const caption = await Caption.create({
+            text,
+            user_id,
+            photo_id
+        });
+
+        // Returning the user and token to the client
+        res.status(201).json({
+            caption
+        });
+    } catch (error) {
+        // If an error occurs during the registration process, returning the error message to the client
+        console.log(error);
+        res.status(500).json({
+            error: error.message
+        });
+    }
+};
