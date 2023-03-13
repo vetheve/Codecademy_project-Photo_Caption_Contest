@@ -140,35 +140,25 @@ exports.updatePhoto = async (req, res) => {
         });
     }
 };
-/*
-exports.add = async (req, res) => {
+
+exports.uploadNewPhoto = async (req, res) => {
 
     // Extracting the required fields from the request body
     const {
-        username,
-        email,
-        password
+        url,
+        user_id
     } = req.body;
 
     try {
-        // Creating a new user in the database
-        const user = await User.create({
-            username,
-            email,
-            password
-        });
-
-        // Creating a JSON web token using the user's ID and the secret key
-        const token = jwt.sign({
-            user_uuid: user.uuid
-        }, authConfig.secret, {
-            expiresIn: authConfig.expiresIn
+        // Creating a new photo in the database
+        const photo = await Photo.create({
+            url,
+            user_id,
         });
 
         // Returning the user and token to the client
         res.status(201).json({
-            user,
-            token
+            photo
         });
     } catch (error) {
         // If an error occurs during the registration process, returning the error message to the client
@@ -178,4 +168,3 @@ exports.add = async (req, res) => {
         });
     }
 };
-*/
