@@ -1,5 +1,5 @@
 const {
-    User, Photo, Caption, Vote, sequelize 
+    User, caption, Caption, Vote, sequelize 
 } = require('../models/index.js');
 
 // Importing the JSON web token package
@@ -13,17 +13,17 @@ const bcrypt = require('bcrypt');
 
 exports.getAllCaptions = async (req, res) => {
     try {
-        // Retrieving all photos from the database using the Caption model, and selecting only specific attributes to return
+        // Retrieving all captions from the database using the Caption model, and selecting only specific attributes to return
         const captions = await Caption.findAll({
             attributes: [
                 'uuid',
                 'text',
                 'user_id',
-                'photo_id'
+                'caption_id'
             ],
         });
 
-        // If photos are not found, return a 404 response
+        // If captions are not found, return a 404 response
         if (!captions) {
             return res.status(404).json({
                 error: 'Captions not found',
@@ -52,7 +52,7 @@ exports.getCaptionById = async (req, res) => {
         // Retrieving a caption from the database using the Caption model, and selecting only specific attributes to return
         const caption = await Caption.findByPk(req.params.uuid, {
             include: [{
-                    association: 'photo'
+                    association: 'caption'
                 }
             ]
         });
@@ -87,7 +87,7 @@ exports.uploadNewCaption = async (req, res) => {
     const {
         text,
         user_id,
-        photo_id
+        caption_id
     } = req.body;
 
     try {
@@ -96,11 +96,11 @@ exports.uploadNewCaption = async (req, res) => {
             throw new Error('Text must be between 1 and 100 characters');
         }
 
-        // Creating a new photo in the database
+        // Creating a new caption in the database
         const caption = await Caption.create({
             text,
             user_id,
-            photo_id
+            caption_id
         });
 
         // Returning the user and token to the client
@@ -112,6 +112,32 @@ exports.uploadNewCaption = async (req, res) => {
         console.log(error);
         res.status(500).json({
             error: error.message
+        });
+    }
+};
+
+exports.updateCaption = async (req, res) => {
+    try {
+        const caption = await Caption.findByPk(req.params.uuid);
+        if (!caption) {
+            return res.status(404).json({
+                error: 'caption not found',
+            });
+        } else {
+            await caption.update(req.body, { 
+                where: { 
+                    uuid: req.params.uuid 
+                }
+            });
+            return res.status(204).json({
+                message: 'Caption updated',
+            });
+        };
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            error: error.message,
         });
     }
 };
