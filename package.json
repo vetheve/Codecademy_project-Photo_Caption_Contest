@@ -9,13 +9,13 @@
     "jsonwebtoken": "^9.0.0",
     "pg": "^8.10.0",
     "pg-hstore": "^2.3.4",
-    "sequelize": "^6.29.3",
+    "sequelize": "^6.30.0",
     "sinon": "^15.0.1",
     "ulid": "^2.3.0"
   },
   "devDependencies": {
     "ava": "^5.2.0",
-    "nodemon": "^2.0.21",
+    "nodemon": "^2.0.22",
     "sequelize-cli": "^6.6.0",
     "supertest": "^6.3.3"
   },

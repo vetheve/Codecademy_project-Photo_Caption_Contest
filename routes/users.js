@@ -9,7 +9,7 @@ const userController = require('../controllers/userController.js');
 const bodyParser = require('body-parser');
 userRouter.use(bodyParser.json());
 
-// Export balanceuserRouter for use in other modules
+// Export userRouter for use in other modules
 module.exports = userRouter;
 
 // Endpoint to handle requests

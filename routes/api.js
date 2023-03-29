@@ -10,7 +10,7 @@ const loginRouter = require('./login.js');
 const userRouter = require('./users.js');
 const photoRouter = require('./photo.js');
 const captionRouter = require('./caption.js');
-//const voteRouter = require('./vote.js');
+const voteRouter = require('./vote.js');
 
 // Use the imported routers
 apiRouter.use('/register', registerRouter);
@@ -18,7 +18,7 @@ apiRouter.use('/login', loginRouter);
 apiRouter.use('/users', userRouter);
 apiRouter.use('/photos', photoRouter);
 apiRouter.use('/captions', captionRouter);
-//apiRouter.use('/vote', voteRouter);
+apiRouter.use('/votes', voteRouter);
 
 // Export the apiRouter
 module.exports = apiRouter
