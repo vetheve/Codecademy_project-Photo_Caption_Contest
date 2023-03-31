@@ -9,11 +9,16 @@ const userController = require('../controllers/userController.js');
 const bodyParser = require('body-parser');
 userRouter.use(bodyParser.json());
 
+// Import middlewares
+const authentication = require('../middlewares/authentication');
+const authorization = require('../middlewares/authorization');
+const cache = require('../middlewares/cache');
+
 // Export userRouter for use in other modules
 module.exports = userRouter;
 
 // Endpoint to handle requests
-userRouter.get('/', userController.getAllUsers);
-userRouter.get('/uuid/:uuid', userController.getUserById);
-userRouter.put('/uuid/:uuid', userController.updateUser);
-userRouter.delete('/uuid/:uuid', userController.deleteUser);
+userRouter.get('/', cache(60), authentication, authorization(['admin']), userController.getAllUsers);
+userRouter.get('/uuid/:uuid', cache(60), authentication, authorization(['user', 'admin']), userController.getUserById);
+userRouter.put('/uuid/:uuid', authentication, authorization(['user', 'admin']), userController.updateUser);
+userRouter.delete('/uuid/:uuid', authentication, authorization(['admin']), userController.deleteUser);
