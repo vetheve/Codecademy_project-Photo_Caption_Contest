@@ -9,12 +9,17 @@ const photoController = require('../controllers/photoController.js');
 const bodyParser = require('body-parser');
 photoRouter.use(bodyParser.json());
 
+// Import middlewares
+const authentication = require('../middlewares/authentication.js');
+const authorization = require('../middlewares/authorization.js');
+const cache = require('../middlewares/cache.js');
+
 // Export balancephotoRouter for use in other modules
 module.exports = photoRouter;
 
 // Endpoint to handle requests
-photoRouter.get('/', photoController.getAllPhotos);
-photoRouter.post('/', photoController.uploadNewPhoto);
-photoRouter.get('/uuid/:uuid', photoController.getPhotoById);
-photoRouter.put('/uuid/:uuid', photoController.updatePhoto);
-photoRouter.delete('/uuid/:uuid', photoController.deletePhoto);
+photoRouter.get('/', cache(60), authentication, authorization(['user', 'admin']), photoController.getAllPhotos);
+photoRouter.post('/', authentication, authorization(['user', 'admin']), photoController.uploadNewPhoto);
+photoRouter.get('/uuid/:uuid', cache(60), authentication, authorization(['user', 'admin']), photoController.getPhotoById);
+photoRouter.put('/uuid/:uuid', authentication, authorization(['user', 'admin']), photoController.updatePhoto);
+photoRouter.delete('/uuid/:uuid', authentication, authorization(['admin']), photoController.deletePhoto);

@@ -10,9 +10,9 @@ const bodyParser = require('body-parser');
 userRouter.use(bodyParser.json());
 
 // Import middlewares
-const authentication = require('../middlewares/authentication');
-const authorization = require('../middlewares/authorization');
-const cache = require('../middlewares/cache');
+const authentication = require('../middlewares/authentication.js');
+const authorization = require('../middlewares/authorization.js');
+const cache = require('../middlewares/cache.js');
 
 // Export userRouter for use in other modules
 module.exports = userRouter;

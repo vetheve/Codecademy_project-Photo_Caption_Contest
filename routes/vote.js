@@ -8,8 +8,13 @@ const voteController = require('../controllers/voteController.js');
 const bodyParser = require('body-parser');
 voteRouter.use(bodyParser.json());
 
+// Import middlewares
+const authentication = require('../middlewares/authentication.js');
+const authorization = require('../middlewares/authorization.js');
+const cache = require('../middlewares/cache.js');
+
 // Export voteRouter for use in other modules
 module.exports = voteRouter;
 
-voteRouter.post('/', voteController.createVote);
+voteRouter.post('/', authentication, authorization(['user', 'admin']), voteController.createVote);
 

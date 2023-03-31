@@ -8,12 +8,16 @@ const captionController = require('../controllers/captionController.js');
 const bodyParser = require('body-parser');
 captionRouter.use(bodyParser.json());
 
+// Import middlewares
+const authentication = require('../middlewares/authentication.js');
+const authorization = require('../middlewares/authorization.js');
+const cache = require('../middlewares/cache.js');
+
 // Export balancecaptionRouter for use in other modules
 module.exports = captionRouter;
 
 // Endpoint to handle requests
-captionRouter.get('/', captionController.getAllCaptions);
-captionRouter.post('/', captionController.uploadNewCaption);
-captionRouter.get('/uuid/:uuid', captionController.getCaptionById);
-captionRouter.put('/uuid/:uuid', captionController.updateCaption);
-//captionRouter.delete('/uuid/:uuid', captionController.deleteCaption);
+captionRouter.get('/', cache(60), authentication, authorization(['user', 'admin']), captionController.getAllCaptions);
+captionRouter.post('/', authentication, authorization(['user', 'admin']), captionController.uploadNewCaption);
+captionRouter.get('/uuid/:uuid', cache(60), authentication, authorization(['user', 'admin']), captionController.getCaptionById);
+captionRouter.put('/uuid/:uuid', authentication, authorization(['user', 'admin']), captionController.updateCaption);
