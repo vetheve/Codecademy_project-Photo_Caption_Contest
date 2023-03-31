@@ -23,12 +23,12 @@ module.exports = (sequelize, DataTypes) => {
                     as: 'photos',
                     onDelete: 'CASCADE'
                 }),
-            User.hasMany(models.Caption, {
+                User.hasMany(models.Caption, {
                     foreignKey: 'user_id',
                     as: 'captions',
                     onDelete: 'CASCADE'
                 }),
-            User.hasMany(models.Vote, {
+                User.hasMany(models.Vote, {
                     foreignKey: 'user_id',
                     as: 'votes',
                     onDelete: 'CASCADE'
@@ -113,6 +113,19 @@ module.exports = (sequelize, DataTypes) => {
                     msg: 'Password contains invalid characters',
                 },
             },
+        },
+        role: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: 'user',
+            validate: {
+                isIn: {
+                    args: [
+                        ['user', 'admin']
+                    ],
+                    msg: 'Invalid role. Must be user or admin.'
+                }
+            }
         },
     }, {
         sequelize,

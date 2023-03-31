@@ -26,7 +26,8 @@ exports.registerNewUser = async (req, res) => {
         const user = await User.create({
             username,
             email,
-            password
+            password,
+            role: 'user' // Ensure the user's role is set as "user"
         });
 
         // Creating a JSON web token using the user's ID and the secret key
